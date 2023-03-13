@@ -18,7 +18,8 @@ const Country = ({country}) => {
 
 	const getBorders = async () => {
 		const borders = await Promise.all(
-			country.borders.map((border) => getCountry(border))
+			//country.borders.map((border) => getCountry(border))
+			country.borders != null ? country.borders.map((border) => getCountry(border)) : ''
 		);
 
 		setBorders(borders);
@@ -70,7 +71,9 @@ const Country = ({country}) => {
 
 					<div className={styles.details_panel_row}>
 						<div className={styles.details_panel_label}>Currencies</div>
-						<div className={styles.details_panel_value}>{country.currencies.map(({name}) => name).join(", ")}</div>
+						<div className={styles.details_panel_value}>
+							{country.currencies != null ? country.currencies.map(({name}) => name).join(", ") : ''}
+						</div>
 					</div>
 
 					<div className={styles.details_panel_row}>
